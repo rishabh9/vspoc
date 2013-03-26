@@ -18,9 +18,6 @@ public class DataReader {
 	private List<Reading> reading = new ArrayList<Reading>();
 	private String inputFileName;
 
-	// private String outpath =
-	// "/media/personal/Int/code/vspoc/src/main/resources/output.txt"; ////////
-
 	public DataReader() {
 		inputFileName = PropertiesHelper.getProperty("input.file.name");
 	}
@@ -28,14 +25,10 @@ public class DataReader {
 	public void processData() throws Exception {
 
 		BufferedReader reader = null;
-		// BufferedWriter writer = null; // //////
 		try {
 			URL inputFileURL = DataReader.class.getClassLoader().getResource(
 					inputFileName);
-			// DataReader.class.getClassLoader().getResourceAsStream("config.properties");
 			reader = new BufferedReader(new FileReader(inputFileURL.getFile()));
-			// reader = new BufferedReader(new FileReader(path));
-			// writer = new BufferedWriter(new FileWriter(outpath)); // //////
 
 			long oldTime = 86400000l;
 
@@ -70,7 +63,6 @@ public class DataReader {
 
 					oldTime = newTime;
 					newTime = timeInMilliseconds(line);
-					// writer.write(car.toString() + "\n"); //////////////////
 					continue;
 				} else {
 					car.setTimeOfFrontAxleOnMarkerB(timeInMilliseconds(line));
@@ -97,7 +89,6 @@ public class DataReader {
 				}
 				oldTime = newTime;
 				newTime = timeInMilliseconds(line);
-				// writer.write(car.toString() + "\n"); // /////////////////////
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -107,9 +98,7 @@ public class DataReader {
 			e.printStackTrace();
 		} finally {
 			reader.close();
-			// writer.close();
 		}
-		// System.out.println(reading.size()); // ///////////////////////////
 	}
 
 	private long timeInMilliseconds(String line) {
@@ -117,6 +106,7 @@ public class DataReader {
 		try {
 			returnValue = Long.parseLong(line.substring(1));
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return returnValue;
 	}
