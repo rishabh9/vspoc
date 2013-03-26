@@ -1,31 +1,41 @@
-package me.rishabh.vspoc.main;
+package me.rishabh.vspoc.datareader;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import me.rishabh.vspoc.model.Day;
 import me.rishabh.vspoc.model.Direction;
 import me.rishabh.vspoc.model.Reading;
+import me.rishabh.vspoc.utilities.PropertiesHelper;
 
 public class DataReader {
 
 	private List<Reading> reading = new ArrayList<Reading>();
-	private String filepath = "/media/personal/Int/code/vspoc/src/main/resources/inputdata.txt";
-	private String outpath = "/media/personal/Int/code/vspoc/src/main/resources/output.txt";
+	private String inputFileName;
+
+	// private String outpath =
+	// "/media/personal/Int/code/vspoc/src/main/resources/output.txt"; ////////
+
+	public DataReader() {
+		inputFileName = PropertiesHelper.getProperty("input.file.name");
+	}
 
 	public void processData() throws Exception {
 
 		BufferedReader reader = null;
-		BufferedWriter writer = null;
+		// BufferedWriter writer = null; // //////
 		try {
-			reader = new BufferedReader(new FileReader(filepath));
-			writer = new BufferedWriter(new FileWriter(outpath));
+			URL inputFileURL = DataReader.class.getClassLoader().getResource(
+					inputFileName);
+			// DataReader.class.getClassLoader().getResourceAsStream("config.properties");
+			reader = new BufferedReader(new FileReader(inputFileURL.getFile()));
+			// reader = new BufferedReader(new FileReader(path));
+			// writer = new BufferedWriter(new FileWriter(outpath)); // //////
 
 			long oldTime = 86400000l;
 
@@ -60,7 +70,7 @@ public class DataReader {
 
 					oldTime = newTime;
 					newTime = timeInMilliseconds(line);
-					// writer.write(car.toString() + "\n");
+					// writer.write(car.toString() + "\n"); //////////////////
 					continue;
 				} else {
 					car.setTimeOfFrontAxleOnMarkerB(timeInMilliseconds(line));
@@ -87,7 +97,7 @@ public class DataReader {
 				}
 				oldTime = newTime;
 				newTime = timeInMilliseconds(line);
-				// writer.write(car.toString() + "\n");
+				// writer.write(car.toString() + "\n"); // /////////////////////
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -97,9 +107,9 @@ public class DataReader {
 			e.printStackTrace();
 		} finally {
 			reader.close();
-			writer.close();
+			// writer.close();
 		}
-		// System.out.println(vehicles.size());
+		// System.out.println(reading.size()); // ///////////////////////////
 	}
 
 	private long timeInMilliseconds(String line) {
