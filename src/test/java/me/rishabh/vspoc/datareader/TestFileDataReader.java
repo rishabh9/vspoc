@@ -5,6 +5,7 @@ package me.rishabh.vspoc.datareader;
 
 import java.io.FileNotFoundException;
 
+import me.rishabh.vspoc.play.InputData;
 import me.rishabh.vspoc.utilities.SimpleLogger;
 
 import org.junit.After;

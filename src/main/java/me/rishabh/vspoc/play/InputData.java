@@ -1,4 +1,4 @@
-package me.rishabh.vspoc.datareader;
+package me.rishabh.vspoc.play;
 
 import java.io.BufferedReader;
 import java.io.File;
