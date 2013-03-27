@@ -7,10 +7,14 @@ package me.rishabh.vspoc.exceptions;
  * @author rishabh
  * 
  */
-public class UnImplementedInputDataPatternException extends Exception {
-    
-    public UnImplementedInputDataPatternException(String msg) {
+public class UnSupportedInputDataPatternException extends Exception {
+
+    public UnSupportedInputDataPatternException(String msg) {
         super(msg);
+    }
+
+    public UnSupportedInputDataPatternException(String msg, Throwable cause) {
+        super(msg, cause);
     }
 
     private static final long serialVersionUID = -592335316155983574L;

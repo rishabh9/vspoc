@@ -1,7 +1,7 @@
 /**
  * 
  */
-package me.rishabh.vspoc.play;
+package me.rishabh.vspoc.reader;
 
 /**
  * @author rishabh

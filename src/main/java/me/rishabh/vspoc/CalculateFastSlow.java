@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import me.rishabh.vspoc.datareader.InputData;
+import me.rishabh.vspoc.reader.InputData;
 
 public class CalculateFastSlow {
 

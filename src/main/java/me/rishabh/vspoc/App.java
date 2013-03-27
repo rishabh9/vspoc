@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
 
-import me.rishabh.vspoc.datareader.InputData;
+import me.rishabh.vspoc.reader.InputData;
 
 /**
  * Hello world!

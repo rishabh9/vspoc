@@ -9,10 +9,10 @@ import java.util.Properties;
  * @author rishabh
  * 
  */
-public class PropertiesHelper {
+public final class PropertiesHelper {
 
-	private static final Properties prop = new Properties();
-	private static boolean isCached = false;
+	private static final Properties PROP = new Properties();
+	private static boolean cached;
 
 	private static final SimpleLogger LOG = SimpleLogger
 			.getLogger(PropertiesHelper.class);
@@ -24,9 +24,9 @@ public class PropertiesHelper {
 		String methodName = "loadPropertiesFile()";
 		LOG.info(methodName, "Reading properties file from classpath...");
 		try {
-			prop.load(PropertiesHelper.class.getClassLoader()
+			PROP.load(PropertiesHelper.class.getClassLoader()
 					.getResourceAsStream("config.properties"));
-			isCached = true;
+			cached = true;
 			LOG.info(methodName, "Properties file loaded and cached");
 		} catch (IOException e) {
 			LOG.exception(methodName, "Properties file not found in classpath",
@@ -64,12 +64,11 @@ public class PropertiesHelper {
 		String methodName = "getProperty(key,defaultValue)";
 
 		LOG.info("getProperty()", "getting value for key - " + key);
-		String value;
-		if (!isCached) {
+		if (!cached) {
 			LOG.info(methodName, "Properties file wasn't loaded! loading...");
 			loadPropertiesFile();
 		}
-		return prop.getProperty(key, defaultValue);
+		return PROP.getProperty(key, defaultValue);
 	}
 
 	/**
@@ -78,7 +77,7 @@ public class PropertiesHelper {
 	 * @return TRUE if properties file is cached.
 	 */
 	static boolean isCached() {
-		return isCached;
+		return cached;
 	}
 
 }
