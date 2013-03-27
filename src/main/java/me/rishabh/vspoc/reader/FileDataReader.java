@@ -1,4 +1,4 @@
-package me.rishabh.vspoc.reader.impl;
+package me.rishabh.vspoc.reader;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,8 +9,7 @@ import me.rishabh.vspoc.exceptions.UnSupportedInputDataPatternException;
 import me.rishabh.vspoc.model.Day;
 import me.rishabh.vspoc.model.Direction;
 import me.rishabh.vspoc.model.Reading;
-import me.rishabh.vspoc.reader.DataReader;
-import me.rishabh.vspoc.reader.Publisher;
+import me.rishabh.vspoc.publisher.Publisher;
 import me.rishabh.vspoc.utilities.SimpleLogger;
 
 /**

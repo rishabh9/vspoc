@@ -1,7 +1,7 @@
 /**
  * 
  */
-package me.rishabh.vspoc.reader;
+package me.rishabh.vspoc.publisher;
 
 /**
  * @author rishabh
@@ -16,6 +16,4 @@ public interface Publisher<T> {
      *            Object that needs to be pushed to the subscribers.
      */
     void push(T t);
-    
-    void printSize();
 }
