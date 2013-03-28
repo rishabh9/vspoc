@@ -63,9 +63,7 @@ public class SimpleLogger {
      *            Message to be logged
      */
     public void debug(String methodName, String message) {
-        if (isDebugEnabled()) {
             LOG.logp(Level.FINEST, logClass.getName(), methodName, message);
-        }
     }
 
     /**
