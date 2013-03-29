@@ -7,9 +7,9 @@ import me.rishabh.vspoc.exceptions.UnSupportedInputDataPatternException;
 import me.rishabh.vspoc.publisher.ReadingsPublisher;
 import me.rishabh.vspoc.reader.DataReader;
 import me.rishabh.vspoc.reader.FileDataReader;
-import me.rishabh.vspoc.subscribers.AverageDistanceTracker;
-import me.rishabh.vspoc.subscribers.SpeedDistributionTracker;
-import me.rishabh.vspoc.subscribers.VehicleCountTracker;
+import me.rishabh.vspoc.subscriber.AverageDistanceTracker;
+import me.rishabh.vspoc.subscriber.SpeedDistributionTracker;
+import me.rishabh.vspoc.subscriber.VehicleCountTracker;
 
 /**
  * The Main Class.

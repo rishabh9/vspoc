@@ -12,6 +12,6 @@ public interface DataReader {
      * @throws UnSupportedInputDataPatternException
      * @throws IOException
      */
-    public abstract void readAndPush() throws UnSupportedInputDataPatternException, IOException;
+    public abstract void processInput() throws UnSupportedInputDataPatternException, IOException;
 
 }

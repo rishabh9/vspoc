@@ -1,6 +1,4 @@
-package me.rishabh.vspoc.subscribers;
-
-import java.util.Observable;
+package me.rishabh.vspoc.subscriber;
 
 import me.rishabh.vspoc.model.Reading;
 

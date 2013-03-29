@@ -1,4 +1,4 @@
-package me.rishabh.vspoc.subscribers;
+package me.rishabh.vspoc.subscriber;
 
 import java.util.Observable;
 
@@ -6,6 +6,7 @@ import me.rishabh.vspoc.model.Day;
 import me.rishabh.vspoc.model.Direction;
 import me.rishabh.vspoc.model.Reading;
 import me.rishabh.vspoc.publisher.ReadingsPublisher;
+import me.rishabh.vspoc.subscriber.data.VehicleCountData;
 import me.rishabh.vspoc.utilities.SimpleLogger;
 
 public class VehicleCountTracker extends AbstractTracker {

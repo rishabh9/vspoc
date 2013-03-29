@@ -10,8 +10,6 @@ import me.rishabh.vspoc.model.Day;
 import me.rishabh.vspoc.model.Direction;
 import me.rishabh.vspoc.model.Reading;
 import me.rishabh.vspoc.publisher.Publisher;
-import me.rishabh.vspoc.publisher.ReadingsPublisher;
-import me.rishabh.vspoc.subscribers.VehicleCountTracker;
 import me.rishabh.vspoc.utilities.SimpleLogger;
 
 /**
@@ -42,7 +40,7 @@ public class FileDataReader implements DataReader {
     /**
      * {@inheritDoc}
      */
-    public void readAndPush() throws UnSupportedInputDataPatternException, IOException {
+    public void processInput() throws UnSupportedInputDataPatternException, IOException {
 
         String methodName = "readAndPush()";
         BufferedReader reader = null;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package me.rishabh.vspoc.subscribers;
+package me.rishabh.vspoc.subscriber;
 
 import java.util.Observer;
 

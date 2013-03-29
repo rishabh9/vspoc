@@ -1,4 +1,4 @@
-package me.rishabh.vspoc.subscribers;
+package me.rishabh.vspoc.subscriber.data;
 
 import me.rishabh.vspoc.model.Day;
 import me.rishabh.vspoc.model.Direction;
