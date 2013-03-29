@@ -31,9 +31,17 @@ public class VehicleCountData {
      * @param data
      * @param interval
      */
-    public void recordData(Reading data, int interval) {
+    public void recordData(Reading data) {
+        recordData(data, 5);
+        recordData(data, 15);
+        recordData(data, 20);
+        recordData(data, 30);
+        recordData(data, 60);
+    }
+
+    private void recordData(Reading data, int interval) {
         Day day = data.getDayOfTravel();
-        long time = data.getMarkedTime();
+        long time = data.getTimeOfFrontAxleOnMarkerA();
         Direction direction = data.getDirectionOfTravel();
         int index = (int) (time / 60000 / interval);
 

@@ -9,6 +9,8 @@ public class SpeedDistributionData {
 
     private static final SimpleLogger LOG = SimpleLogger.getLogger(SpeedDistributionData.class);
 
+    private static final double DISTANCE_BW_AXLE = 2.5; // in meters
+
     // [2] - for direction
     // [5] - days
     // Each item of the below array is representation of 60 minutes interval.
@@ -24,9 +26,9 @@ public class SpeedDistributionData {
 
     public void recordData(Reading data) {
         Day day = data.getDayOfTravel();
-        long time = data.getMarkedTime();
+        long time = data.getTimeOfFrontAxleOnMarkerA();
         Direction direction = data.getDirectionOfTravel();
-        double speed = data.getSpeedInKmph();
+        double speed = getSpeedInKmph(data);
         int index = (int) (time / 60000 / 60); // 60 minutes
 
         LOG.debug("recordData()", "Speed : " + speed);
@@ -55,6 +57,21 @@ public class SpeedDistributionData {
     public long getAverageSpeed(Direction direction, Day day, int hour) {
         double speed = avgSpeed60[direction.ordinal()][day.ordinal()][hour - 1];
         return Math.round(speed);
+    }
+
+    /**
+     * 
+     * @param data
+     *            The Reading
+     * @return Speed of vehicle in Kmph
+     */
+    public double getSpeedInKmph(Reading data) {
+        double timeInMilliseconds = data.getTimeOfRearAxleOnMarkerA() - data.getTimeOfFrontAxleOnMarkerA();
+        double timeInSeconds = timeInMilliseconds * 0.001;
+        double distInMetersInOneSecond = DISTANCE_BW_AXLE / timeInSeconds;
+        double distInMetersInOneHour = distInMetersInOneSecond * 3600;
+        double distInKmInOneHour = distInMetersInOneHour / 1000;
+        return distInKmInOneHour;
     }
 
 }

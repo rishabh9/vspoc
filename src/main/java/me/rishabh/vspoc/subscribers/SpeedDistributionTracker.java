@@ -13,10 +13,8 @@ public class SpeedDistributionTracker extends AbstractTracker {
     private static final SimpleLogger LOG = SimpleLogger.getLogger(SpeedDistributionTracker.class);
     private SpeedDistributionData spdData;
 
-    public SpeedDistributionTracker(Observable publisher) {
+    public SpeedDistributionTracker() {
         super();
-        super.publisher = publisher;
-        super.publisher.addObserver(this);
         spdData = new SpeedDistributionData();
         LOG.info("SpeedDistributionTracker()", "Created VehicleCountTracker ");
     }

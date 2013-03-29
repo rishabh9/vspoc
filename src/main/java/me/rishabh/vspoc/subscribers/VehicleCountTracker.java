@@ -14,23 +14,17 @@ public class VehicleCountTracker extends AbstractTracker {
 
     private VehicleCountData vcData;
 
-    public VehicleCountTracker(Observable publisher) {
+    public VehicleCountTracker() {
         super();
-        super.publisher = publisher;
-        super.publisher.addObserver(this);
         vcData = new VehicleCountData();
-        LOG.info("VehicleCountTracker()", "Created VehicleCountTracker ");
+        LOG.debug("VehicleCountTracker()", "Created VehicleCountTracker ");
     }
 
     public void update(Observable o, Object arg) {
         if (o instanceof ReadingsPublisher) {
             Reading data = (Reading) arg;
 
-            vcData.recordData(data, 5);
-            vcData.recordData(data, 15);
-            vcData.recordData(data, 20);
-            vcData.recordData(data, 30);
-            vcData.recordData(data, 60);
+            vcData.recordData(data);
         }
     }
 

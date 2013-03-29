@@ -1,8 +1,5 @@
 package me.rishabh.vspoc.model;
 
-import me.rishabh.vspoc.subscribers.SpeedDistributionData;
-import me.rishabh.vspoc.utilities.SimpleLogger;
-
 /**
  * This class holds the reading every time a car passes over the markers.
  * 
@@ -10,9 +7,6 @@ import me.rishabh.vspoc.utilities.SimpleLogger;
  * 
  */
 public class Reading {
-
-    private static final SimpleLogger LOG = SimpleLogger.getLogger(Reading.class);
-    private static final double DISTANCE_BW_AXLE = 2.5; // in meters
 
     // Time in milliseconds when...
     private long frontAxleOnA;
@@ -87,24 +81,19 @@ public class Reading {
     }
 
     /**
-     * Helper method to validate if reading is a valid. TODO - REMOVE THIS
-     * METHOD WHEN CODE COMPLETE
      * 
-     * @return True if reading is valid
+     * @return Time when the front axle goes over the first marker A.
      */
-    public boolean isValid() {
-        if (frontAxleOnA == 0 || rearAxleOnA == 0) {
-            return false;
-        }
-        return true;
+    public long getTimeOfFrontAxleOnMarkerA() {
+        return frontAxleOnA;
     }
 
     /**
      * 
      * @return Time when the front axle goes over the first marker A.
      */
-    public long getMarkedTime() {
-        return frontAxleOnA;
+    public long getTimeOfRearAxleOnMarkerA() {
+        return rearAxleOnA;
     }
 
     /**
@@ -121,19 +110,6 @@ public class Reading {
      */
     public Direction getDirectionOfTravel() {
         return direction;
-    }
-
-    /**
-     * 
-     * @return Speed of vehicle in Kmph
-     */
-    public double getSpeedInKmph() {
-        double timeInMilliseconds = rearAxleOnA - frontAxleOnA;
-        double timeInSeconds = timeInMilliseconds * 0.001;
-        double distInMetersInOneSecond = DISTANCE_BW_AXLE / timeInSeconds;
-        double distInMetersInOneHour = distInMetersInOneSecond * 3600;
-        double distInKmInOneHour = distInMetersInOneHour / 1000;
-        return distInKmInOneHour;
     }
 
 }

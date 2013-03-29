@@ -6,8 +6,6 @@ import me.rishabh.vspoc.model.Reading;
 
 public abstract class AbstractTracker implements Subscriber<Reading> {
     
-    protected Observable publisher;
-
     public abstract void display();
 
 }

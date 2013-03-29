@@ -14,17 +14,23 @@ public class App {
 
     public static void main(String args[]) {
         ReadingsPublisher publisher = new ReadingsPublisher();
-        VehicleCountTracker t = new VehicleCountTracker(publisher);
-        SpeedDistributionTracker t2 = new SpeedDistributionTracker(publisher);
-        DataReader s = new FileDataReader(publisher, new File(args[0]));
+
+        VehicleCountTracker vct = new VehicleCountTracker();
+        publisher.addObserver(vct);
+
+        SpeedDistributionTracker sdt = new SpeedDistributionTracker();
+        publisher.addObserver(sdt);
+
         try {
+            DataReader s = new FileDataReader(publisher, new File(args[0]));
             s.readAndPush();
         } catch (UnSupportedInputDataPatternException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        t.display();
-        t2.display();
+
+        vct.display();
+        sdt.display();
     }
 }
