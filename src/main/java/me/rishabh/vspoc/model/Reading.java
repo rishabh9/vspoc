@@ -11,7 +11,9 @@ public class Reading {
     // Time in milliseconds when...
     private long frontAxleOnA;
     private long rearAxleOnA;
+    @SuppressWarnings("unused")
     private long frontAxleOnB;
+    @SuppressWarnings("unused")
     private long rearAxleOnB;
 
     // The direction of the vehicle
