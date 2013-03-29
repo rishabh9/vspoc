@@ -5,7 +5,7 @@ import me.rishabh.vspoc.model.Direction;
 import me.rishabh.vspoc.model.Reading;
 import me.rishabh.vspoc.utilities.SimpleLogger;
 
-public class VehicleCountData {
+public class VehicleCountData extends AbstractTrackerData {
 
     private static final SimpleLogger LOG = SimpleLogger.getLogger(VehicleCountData.class);
 

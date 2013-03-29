@@ -32,7 +32,6 @@ public class FileDataReader implements DataReader {
      *            The input data file
      */
     public FileDataReader(Publisher<Reading> publisher, File inputFile) {
-        LOG.info("DataReader()", "Initialising... publisher and file");
         this.publisher = publisher;
         this.inputFile = inputFile;
     }
@@ -41,8 +40,8 @@ public class FileDataReader implements DataReader {
      * {@inheritDoc}
      */
     public void processInput() throws UnSupportedInputDataPatternException, IOException {
-
         String methodName = "readAndPush()";
+
         BufferedReader reader = null;
         try {
             LOG.debug(methodName, "Reading input data file");

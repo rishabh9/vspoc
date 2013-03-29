@@ -17,18 +17,19 @@ public class SpeedDistributionTracker extends AbstractTracker {
     public SpeedDistributionTracker() {
         super();
         spdData = new SpeedDistributionData();
-        LOG.info("SpeedDistributionTracker()", "Created VehicleCountTracker ");
     }
 
     public void update(Observable o, Object arg) {
         if (o instanceof ReadingsPublisher) {
             Reading data = (Reading) arg;
+            LOG.debug("update()", "Recording data: " + data.toString());
             spdData.recordData(data);
         }
     }
 
     @Override
     public void display() {
+        LOG.info("display()", "Displaying statistics related to speed distribution.");
         System.out.println("\nSTATISTICS RELATED TO VEHICULAR SPEED FOR THE PAST 5 DAYS");
         for (Day day : Day.values()) {
             System.out.println("For Day " + day);

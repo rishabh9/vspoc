@@ -18,13 +18,12 @@ public class VehicleCountTracker extends AbstractTracker {
     public VehicleCountTracker() {
         super();
         vcData = new VehicleCountData();
-        LOG.debug("VehicleCountTracker()", "Created VehicleCountTracker ");
     }
 
     public void update(Observable o, Object arg) {
         if (o instanceof ReadingsPublisher) {
             Reading data = (Reading) arg;
-
+            LOG.debug("update()", "Recording data: " + data.toString());
             vcData.recordData(data);
         }
     }
@@ -34,6 +33,7 @@ public class VehicleCountTracker extends AbstractTracker {
      */
     @Override
     public void display() {
+        LOG.info("display()", "Displaying statistics related to vehicular count.");
         System.out.println("\nSTATISTICS RELATED TO VEHICULAR COUNT FOR THE PAST 5 DAYS");
         for (Day day : Day.values()) {
             System.out.println("For Day " + day);
