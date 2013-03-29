@@ -4,6 +4,13 @@ import java.io.IOException;
 
 import me.rishabh.vspoc.exceptions.UnSupportedInputDataPatternException;
 
+/**
+ * This interface provides the contract to read data from any kind if input
+ * media.
+ * 
+ * @author rishabh
+ * 
+ */
 public interface DataReader {
 
     /**
@@ -12,6 +19,6 @@ public interface DataReader {
      * @throws UnSupportedInputDataPatternException
      * @throws IOException
      */
-    public abstract void processInput() throws UnSupportedInputDataPatternException, IOException;
+    void processInput() throws UnSupportedInputDataPatternException, IOException;
 
 }

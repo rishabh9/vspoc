@@ -13,6 +13,7 @@ import me.rishabh.vspoc.publisher.Publisher;
 import me.rishabh.vspoc.utilities.SimpleLogger;
 
 /**
+ * Class to read input data from a file.
  * 
  * @author rishabh
  * 
@@ -36,9 +37,6 @@ public class FileDataReader implements DataReader {
         this.inputFile = inputFile;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public void processInput() throws UnSupportedInputDataPatternException, IOException {
         String methodName = "readAndPush()";
 

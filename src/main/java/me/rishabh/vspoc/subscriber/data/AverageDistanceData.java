@@ -10,7 +10,8 @@ public class AverageDistanceData extends AbstractTrackerData {
     private static final SimpleLogger LOG = SimpleLogger.getLogger(AverageDistanceData.class);
 
     // The previous reading
-    private static Reading previousData;
+    private static Reading previousDataNorth;
+    private static Reading previousDataSouth;
 
     // [2] - for direction
     // [5] - days
@@ -36,8 +37,15 @@ public class AverageDistanceData extends AbstractTrackerData {
 
         count60[direction.ordinal()][day.ordinal()][index]++;
 
-        long distance = getDistanceBetweenVehiclesInMeters(previousData, data);
+        long distance = 0;
+        if (data.getDirectionOfTravel().equals(Direction.NORTH_BOUND)) {
+            distance = getDistanceBetweenVehiclesInMeters(previousDataNorth, data);
+        } else {
+            distance = getDistanceBetweenVehiclesInMeters(previousDataSouth, data);
+        }
+
         LOG.debug(methodName, "Distance between vehicles: " + distance);
+
         zDistance60[direction.ordinal()][day.ordinal()][index] += distance;
 
         avgDistance60[direction.ordinal()][day.ordinal()][index] = zDistance60[direction.ordinal()][day.ordinal()][index]
@@ -48,7 +56,11 @@ public class AverageDistanceData extends AbstractTrackerData {
         LOG.debug(methodName, "Avg distance : " + avgDistance60[direction.ordinal()][day.ordinal()][index]);
 
         // make the current reading, the previous.
-        previousData = data;
+        if (data.getDirectionOfTravel().equals(Direction.NORTH_BOUND)) {
+            previousDataNorth = data;
+        } else {
+            previousDataSouth = data;
+        }
     }
 
     private long getDistanceBetweenVehiclesInMeters(Reading previousData, Reading data) {
@@ -76,6 +88,58 @@ public class AverageDistanceData extends AbstractTrackerData {
 
     public long getAverageDistance(Direction direction, Day day, int hour) {
         return avgDistance60[direction.ordinal()][day.ordinal()][hour - 1];
+    }
+
+    // --- METHODS ADDED TO AID UNIT TESTING --- //
+
+    /** For unit testing */
+    static long[][][] getCount60() {
+        return count60;
+    }
+
+    /** For unit testing */
+    static long[][][] getzDistance60() {
+        return zDistance60;
+    }
+
+    /** For unit testing */
+    static long[][][] getAvgDistance60() {
+        return avgDistance60;
+    }
+
+    /** For unit testing */
+    static Reading getPreviousDataNorth() {
+        return previousDataNorth;
+    }
+
+    /** For unit testing */
+    static void setPreviousDataNorth(Reading previousDataNorth) {
+        AverageDistanceData.previousDataNorth = previousDataNorth;
+    }
+
+    /** For unit testing */
+    static Reading getPreviousDataSouth() {
+        return previousDataSouth;
+    }
+
+    /** For unit testing */
+    static void setPreviousDataSouth(Reading previousDataSouth) {
+        AverageDistanceData.previousDataSouth = previousDataSouth;
+    }
+
+    /** For unit testing */
+    static void setCount60(long[][][] count60) {
+        AverageDistanceData.count60 = count60;
+    }
+
+    /** For unit testing */
+    static void setzDistance60(long[][][] zDistance60) {
+        AverageDistanceData.zDistance60 = zDistance60;
+    }
+
+    /** For unit testing */
+    static void setAvgDistance60(long[][][] avgDistance60) {
+        AverageDistanceData.avgDistance60 = avgDistance60;
     }
 
 }
