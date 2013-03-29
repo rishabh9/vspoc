@@ -4,6 +4,8 @@
 package me.rishabh.vspoc.publisher;
 
 /**
+ * Classes implementing this interface are recognised as publishers.
+ * 
  * @author rishabh
  * 
  */

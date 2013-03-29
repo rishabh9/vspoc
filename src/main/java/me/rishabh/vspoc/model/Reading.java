@@ -1,7 +1,9 @@
 package me.rishabh.vspoc.model;
 
 /**
- * This class holds the reading every time a car passes over the markers.
+ * Class to store the time of contact of the axle with the markers, the
+ * direction of travel and the day of travel. Other variables are evaluated
+ * based on these basic readings.
  * 
  * @author rishabh
  * 
@@ -19,7 +21,7 @@ public class Reading {
     // The direction of the vehicle
     private Direction direction;
 
-    // Holds the day when the car passed over the markers.
+    // The day when the car passed over the markers.
     private Day day;
 
     /**
