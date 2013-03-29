@@ -8,45 +8,56 @@ import me.rishabh.vspoc.model.Reading;
 import me.rishabh.vspoc.publisher.ReadingsPublisher;
 import me.rishabh.vspoc.utilities.SimpleLogger;
 
-public class VehicleCountTracker implements Subscriber<Reading> {
-
-    public Observable publisher;
+public class VehicleCountTracker extends AbstractTracker {
 
     private static final SimpleLogger LOG = SimpleLogger.getLogger(VehicleCountTracker.class);
-    
-    private VehicleCountTrackerData trackerData;
+
+    private VehicleCountData vcData;
 
     public VehicleCountTracker(Observable publisher) {
         super();
-        this.publisher = publisher;
-        this.publisher.addObserver(this);
-        trackerData = new VehicleCountTrackerData();
+        super.publisher = publisher;
+        super.publisher.addObserver(this);
+        vcData = new VehicleCountData();
         LOG.info("VehicleCountTracker()", "Created VehicleCountTracker ");
     }
 
     public void update(Observable o, Object arg) {
         if (o instanceof ReadingsPublisher) {
             Reading data = (Reading) arg;
-            
-            trackerData.recordData(data,5);
-            trackerData.recordData(data,15);
-            trackerData.recordData(data,20);
-            trackerData.recordData(data,30);
-            trackerData.recordData(data,60);
+
+            vcData.recordData(data, 5);
+            vcData.recordData(data, 15);
+            vcData.recordData(data, 20);
+            vcData.recordData(data, 30);
+            vcData.recordData(data, 60);
         }
     }
 
     /**
      * Display the vehicular count statistics.
      */
+    @Override
     public void display() {
-        System.out.println("DISPLAYING STATISTICS RELATED TO VEHICULAR COUNT FOR THE PAST 5 DAYS\n");
-        System.out.println("On an average, the count of vehicles travelling north bound, for every 15 minutes was:");
-        System.out.println(getSessionsAvgCountForEvery15minutes(Direction.NORTH_BOUND));
-    }
-
-    private long getSessionsAvgCountForEvery15minutes(Direction direction) {
-        // TODO Auto-generated method stub
-        return 0l;
+        System.out.println("\nSTATISTICS RELATED TO VEHICULAR COUNT FOR THE PAST 5 DAYS");
+        for (Day day : Day.values()) {
+            System.out.println("For Day " + day);
+            System.out.println("\tCount of vehicles NORTH bound: "
+                    + vcData.getTotalCountForDirectionDay(Direction.NORTH_BOUND, day));
+            System.out.println("\tCount of vehicles SOUTH bound: "
+                    + vcData.getTotalCountForDirectionDay(Direction.SOUTH_BOUND, day));
+            System.out.println("\tCount of vehicles NORTH bound, in the mornings: "
+                    + vcData.getTotalCountForMornings(Direction.NORTH_BOUND, day));
+            System.out.println("\tCount of vehicles SOUTH bound, in the mornings: "
+                    + vcData.getTotalCountForMornings(Direction.SOUTH_BOUND, day));
+            System.out.println("\tCount of vehicles NORTH bound, in the evenings: "
+                    + vcData.getTotalCountForEvenings(Direction.NORTH_BOUND, day));
+            System.out.println("\tCount of vehicles SOUTH bound, in the evenings: "
+                    + vcData.getTotalCountForEvenings(Direction.SOUTH_BOUND, day));
+            System.out.println("\tThe peak volume hour for NORTH bound vehicles was: "
+                    + vcData.getPeakVolumeHour(Direction.NORTH_BOUND, day));
+            System.out.println("\tThe peak volume hour for SOUTH bound vehicles was: "
+                    + vcData.getPeakVolumeHour(Direction.SOUTH_BOUND, day));
+        }
     }
 }

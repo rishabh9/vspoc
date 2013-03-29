@@ -1,5 +1,8 @@
 package me.rishabh.vspoc.model;
 
+import me.rishabh.vspoc.subscribers.SpeedDistributionData;
+import me.rishabh.vspoc.utilities.SimpleLogger;
+
 /**
  * This class holds the reading every time a car passes over the markers.
  * 
@@ -7,6 +10,9 @@ package me.rishabh.vspoc.model;
  * 
  */
 public class Reading {
+
+    private static final SimpleLogger LOG = SimpleLogger.getLogger(Reading.class);
+    private static final double DISTANCE_BW_AXLE = 2.5; // in meters
 
     // Time in milliseconds when...
     private long frontAxleOnA;
@@ -100,19 +106,34 @@ public class Reading {
     public long getMarkedTime() {
         return frontAxleOnA;
     }
-    
+
+    /**
+     * 
+     * @return The day of travel
+     */
     public Day getDayOfTravel() {
         return this.day;
     }
 
-    @Override
-    public String toString() {
-        return "Reading [frontAxleOnA=" + frontAxleOnA + ", rearAxleOnA=" + rearAxleOnA + ", frontAxleOnB="
-                + frontAxleOnB + ", rearAxleOnB=" + rearAxleOnB + ", direction=" + direction + ", day=" + day + "]";
-    }
-
+    /**
+     * 
+     * @return The direction of travel
+     */
     public Direction getDirectionOfTravel() {
         return direction;
+    }
+
+    /**
+     * 
+     * @return Speed of vehicle in Kmph
+     */
+    public double getSpeedInKmph() {
+        double timeInMilliseconds = rearAxleOnA - frontAxleOnA;
+        double timeInSeconds = timeInMilliseconds * 0.001;
+        double distInMetersInOneSecond = DISTANCE_BW_AXLE / timeInSeconds;
+        double distInMetersInOneHour = distInMetersInOneSecond * 3600;
+        double distInKmInOneHour = distInMetersInOneHour / 1000;
+        return distInKmInOneHour;
     }
 
 }

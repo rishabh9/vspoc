@@ -136,18 +136,4 @@ public class FileDataReader implements DataReader {
     private boolean startsWithB(String line) {
         return ('B' == line.charAt(0)) ? true : false;
     }
-
-    public static void main(String args[]) {
-        ReadingsPublisher publisher = new ReadingsPublisher();
-        VehicleCountTracker t = new VehicleCountTracker(publisher);
-        DataReader s = new FileDataReader(publisher, new File(args[0]));
-        try {
-            s.readAndPush();
-        } catch (UnSupportedInputDataPatternException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        t.display();
-    }
 }
