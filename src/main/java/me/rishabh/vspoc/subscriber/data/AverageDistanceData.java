@@ -34,7 +34,7 @@ public class AverageDistanceData extends AbstractTrackerData {
         Direction direction = data.getDirectionOfTravel();
         long time = data.getTimeOfFrontAxleOnMarkerA();
         int index = (int) (time / 60000 / 60); // 60 minutes
-
+        
         count60[direction.ordinal()][day.ordinal()][index]++;
 
         long distance = 0;

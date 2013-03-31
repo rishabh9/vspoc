@@ -1,6 +1,5 @@
 package me.rishabh.vspoc.subscriber.data;
 
-import static org.junit.Assert.fail;
 import me.rishabh.vspoc.model.Day;
 import me.rishabh.vspoc.model.Direction;
 import me.rishabh.vspoc.model.Reading;
@@ -55,7 +54,6 @@ public class SpeedDistributionDataTest {
         SpeedDistributionData.setAvgSpeed60(new double[2][5][24]);
         SpeedDistributionData.setCount60(new long[2][5][24]);
         SpeedDistributionData.setzSpeed60(new double[2][5][24]);
-        sdd = null;
     }
 
     @Test

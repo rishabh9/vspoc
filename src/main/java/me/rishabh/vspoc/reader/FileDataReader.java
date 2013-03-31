@@ -121,6 +121,9 @@ public class FileDataReader implements DataReader {
             LOG.exception("getTimeInMillisec()", "Invalid data format " + line, e);
             throw new UnSupportedInputDataPatternException("Invalid data format.", e);
         }
+        if (returnValue >= 86400000) {
+            throw new UnSupportedInputDataPatternException("Invalid data file.");
+        }
         return returnValue;
     }
 

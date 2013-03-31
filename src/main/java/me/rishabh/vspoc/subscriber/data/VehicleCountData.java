@@ -44,7 +44,7 @@ public class VehicleCountData extends AbstractTrackerData {
         long time = data.getTimeOfFrontAxleOnMarkerA();
         Direction direction = data.getDirectionOfTravel();
         int index = (int) (time / 60000 / interval);
-
+        
         if (LOG.isDebugEnabled()) {
             LOG.debug("recordData()", "time = " + time + " .. index = " + index);
         }
@@ -137,5 +137,15 @@ public class VehicleCountData extends AbstractTrackerData {
             }
         }
         return ++hour;
+    }
+
+    /** For unit testing */
+    public static long[][][] getCount60() {
+        return count60;
+    }
+
+    /** For unit testing */
+    public static void setCount60(long[][][] count60) {
+        VehicleCountData.count60 = count60;
     }
 }
