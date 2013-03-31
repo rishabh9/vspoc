@@ -25,6 +25,8 @@ public class App {
     public static void main(String args[]) {
         
         String methodName = "main([])";
+        
+        validate(args);
 
         // Create a publisher, who will publish the processed readings onto
         // different trackers (subscribers).
@@ -60,9 +62,18 @@ public class App {
             adt.display();
         } catch (UnSupportedInputDataPatternException e) {
             LOG.exception(methodName, "The input file is either invalid or not supported.", e);
+            System.exit(1);
         } catch (IOException e) {
             LOG.exception(methodName, "Error reading the input file.", e);
+            System.exit(1);
         }
+    }
 
+    private static void validate(String[] args) {
+        if (args.length != 1) {
+            System.out.println("ERROR!!!  Please provide the input file.");
+            System.out.println("USAGE:\n    java -jar vspoc-0.1.jar <input_file>");
+            System.exit(1);
+        }
     }
 }
