@@ -48,14 +48,13 @@ public class App {
 
         // Read the input file, process the data and pass it onto the publisher.
         try {
-            LOG.debug(methodName, "Accessing the specified file");
             DataReader s = new FileDataReader(publisher, new File(args[0]));
-            LOG.debug(methodName, "Starting to process the file...");
+            LOG.info(methodName, "Starting to process the input file...");
             s.processInput();
-            LOG.debug(methodName, "Processed the file and trackers updated");
+            LOG.info(methodName, "Processed the file and trackers updated");
             
             // Finally, display all of the processed data.
-            LOG.debug(methodName, "Now displaying the data from the trackers");
+            LOG.info(methodName, "Now displaying the data from the trackers");
             vct.display();
             sdt.display();
             adt.display();
