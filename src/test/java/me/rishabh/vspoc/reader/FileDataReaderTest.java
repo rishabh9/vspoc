@@ -26,12 +26,12 @@ public class FileDataReaderTest {
 
     @Test
     public void testProcessInputValidFile() {
-        ReadingsPublisher publisher = new ReadingsPublisher();
-        // SpeedDistributionTracker sdt = new SpeedDistributionTracker();
-        // publisher.addObserver(sdt);
-        URL filename = FileDataReaderTest.class.getClassLoader().getResource("sample.txt");
-        DataReader dataReader = new FileDataReader(publisher, new File(filename.getFile()));
         try {
+            ReadingsPublisher publisher = new ReadingsPublisher();
+            // SpeedDistributionTracker sdt = new SpeedDistributionTracker();
+            // publisher.addObserver(sdt);
+            URL filename = FileDataReaderTest.class.getClassLoader().getResource("sample.txt");
+            DataReader dataReader = new FileDataReader(publisher, new File(filename.getFile()));
             dataReader.processInput();
         } catch (UnSupportedInputDataPatternException e) {
             fail(e.getMessage());

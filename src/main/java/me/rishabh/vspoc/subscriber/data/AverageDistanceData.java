@@ -82,7 +82,7 @@ public class AverageDistanceData extends AbstractTrackerData {
     private double getSpeedOfVehicleInMetersSecond(Reading data) {
         double timeInMilliseconds = data.getTimeOfRearAxleOnMarkerA() - data.getTimeOfFrontAxleOnMarkerA();
         double timeInSeconds = timeInMilliseconds * 0.001;
-        double distInMetersInOneSecond = DISTANCE_BW_AXLE / timeInSeconds;
+        double distInMetersInOneSecond = AVG_DISTANCE_BW_AXLE / timeInSeconds;
         return distInMetersInOneSecond;
     }
 

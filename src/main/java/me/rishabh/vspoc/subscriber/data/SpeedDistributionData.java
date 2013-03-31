@@ -72,13 +72,43 @@ public class SpeedDistributionData extends AbstractTrackerData {
         double timeInMilliseconds = data.getTimeOfRearAxleOnMarkerA() - data.getTimeOfFrontAxleOnMarkerA();
         // Convert that time into seconds
         double timeInSeconds = timeInMilliseconds * 0.001;
-        // Calculate how many meters the vehicle has traveled in one second.
-        double distInMetersInOneSecond = DISTANCE_BW_AXLE / timeInSeconds;
-        // Calculate how many meters the vehicle would have traveled in one hour
+        // Calculate how many meters the vehicle has travelled in one second.
+        double distInMetersInOneSecond = AVG_DISTANCE_BW_AXLE / timeInSeconds;
+        // Calculate how many meters the vehicle would have travelled in one hour
         double distInMetersInOneHour = distInMetersInOneSecond * 3600;
-        // Convert meters per hour to kilometers per hour
+        // Convert meters per hour to kilometres per hour
         double distInKmInOneHour = distInMetersInOneHour / 1000;
         return distInKmInOneHour;
+    }
+
+    /** For unit testing */
+    public static long[][][] getCount60() {
+        return count60;
+    }
+
+    /** For unit testing */
+    public static double[][][] getAvgSpeed60() {
+        return avgSpeed60;
+    }
+
+    /** For unit testing */
+    public static double[][][] getzSpeed60() {
+        return zSpeed60;
+    }
+
+    /** For unit testing */
+    public static void setCount60(long[][][] count60) {
+        SpeedDistributionData.count60 = count60;
+    }
+
+    /** For unit testing */
+    public static void setAvgSpeed60(double[][][] avgSpeed60) {
+        SpeedDistributionData.avgSpeed60 = avgSpeed60;
+    }
+
+    /** For unit testing */
+    public static void setzSpeed60(double[][][] zSpeed60) {
+        SpeedDistributionData.zSpeed60 = zSpeed60;
     }
 
 }
